@@ -24,7 +24,13 @@ product_repository.save(product1)
 product2 = Product("Bobble Head Biden",manufacturer2,"President Biden with a fun oversized head",3,4.99,9.99,True)
 product_repository.save(product2)
 
+product3 = Product("BOOM cheddar",manufacturer2,"Exploding Cheese",100,2.49,6.99,True)
+product_repository.save(product3)
+
 product_repository.select_all()
+
+# product_repository.delete(3)
+
 
 
 
