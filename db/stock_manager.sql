@@ -12,8 +12,8 @@ CREATE TABLE products (
     prod_name VARCHAR(255),
     prod_desc VARCHAR(255),
     stock_qty INT,
-    buy_cost INT,
-    sell_price INT,
+    buy_cost FLOAT,
+    sell_price FLOAT,
     imported BOOLEAN,
     manufacturer_id INT REFERENCES manufacturers(id)
 );
