@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Products</h1>
+
+<p class="btn--wrapper">
+  <a class="btn btn--action" href="/products/new">New Product</a>
+</p>
+
+<ul>
+  {% for product in all_products %}
+  <li>
+  <p>{{ product.prod_name }} : {{ product.prod_desc}} : {{ product.stock_qty }} : {{ product.buy_cost }}
+       : {{ product.sell_price }} : {{ product.manufacturer.manufacturer_name }}</p>
+  {% endfor %}
+</ul>
+
+
+{% endblock %}
