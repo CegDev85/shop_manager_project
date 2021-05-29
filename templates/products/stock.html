@@ -1,19 +1,39 @@
-{% extends 'base.html' %}
+{%extends "base.html"%}
 
-{% block content %}
-<h1>Products</h1>
+{%block content%}
 
-<p class="btn--wrapper">
-  <a class="btn btn--action" href="/products/new">New Product</a>
-</p>
+{% for product in all_products %}
+    <div class="product">
+        <div class="content">
+            <a href="/products/{{product.id}}">{{product.prod_name}}</a> <br>
+            {{product.prod_desc}} 
+            <div class="qty">
+                {{product.stock_qty}}</a> units
+                <span class="cost">
+                    <br>
+                    buy : {{product.buy_cost}}
+                    <br>
+                    sell : {{ product.sell_price }}
+                </span>
+            </div>
+            <div class="buttons">
+                <form class="delete-form" action="/products/{{product.id}}/delete" method="POST">
+                    <button class="trash-button"><i class="fa fa-trash-o fa-3x" style="color:rgb(58, 12, 12)" aria-hidden="true"></i></button>
+                </form>
+                Imported : 
+                {% if product.imported == True %}
+                    <i class="fa fa-check fa-2x" style="color:dodgerblue" aria-hidden="true"></i>
+                {% else %}
+                    <i class="fa fa-times fa-2x" aria-hidden="true"></i>
+                {% endif %}
+                <br>
+                <hr>
+            </div>
+        </div>
+        
+    </div>
 
-<ul>
-  {% for product in all_products %}
-  <li>
-  <p>{{ product.prod_name }} : {{ product.prod_desc}} : {{ product.stock_qty }} : {{ product.buy_cost }}
-       : {{ product.sell_price }} : {{ product.manufacturer.manufacturer_name }}</p>
-  {% endfor %}
-</ul>
+{% endfor %}
 
 
-{% endblock %}
+{%endblock%}

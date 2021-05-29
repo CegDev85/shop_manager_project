@@ -1,0 +1,51 @@
+<p class="btn--wrapper">
+  <a class="btn btn--action" href="/products/new">New Product</a>
+</p>
+
+<ul>
+  {% for product in all_products %}
+  <li>
+  <p>{{ product.prod_name }} : {{ product.prod_desc}} : {{ product.stock_qty }} : {{ product.buy_cost }}
+       : {{ product.sell_price }} : {{ product.manufacturer.manufacturer_name }}</p>
+  {% endfor %}
+</ul>
+---basic products list --
+
+
+
+{% extends "base.html" %}
+
+{% block content %}
+
+{% for product in all_products %} 
+    <div class="prodcuts">
+        <div class="content">
+            {{product.prod_name}}
+            <div class="description">
+                <a href="/product/{{product.id}}">{{product.prod_desc}}</a>
+                <span class="qty">{{product.stock_qty}} units</span>
+            </div>
+            <div class="buttons">
+                <form class="delete-form" action="/products/{{product.id}}/delete" method="POST">
+                <button class="trash-button"><i class="fa fa-trash-o fa-3x" style="color:red" aria-hidden="true"></i></button>
+                </form>
+                {% if product.imported == True%}
+                    <i class="fa fa-check fa-2x" style ="color:green" aria-hidden="true"></i>
+                {% else %}
+                    <i class="fa fa-times fa-2x" aria-hidden="true"></i>
+                {% endif %}
+            </div>
+            
+        </div>
+    </div>
+{% endfor %}
+
+
+
+<!-- {{ all_tasks }} -->
+
+<!-- this is where our list of tasks will go -->
+
+{% endblock %}
+
+product list with ticks crosses and delete buttons
