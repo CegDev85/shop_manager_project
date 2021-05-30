@@ -5,7 +5,7 @@
 {% for product in all_products %}
     <div class="product">
         <div class="content">
-            <a href="/products/{{product.id}}">{{product.prod_name}}</a> <br>
+            {{product.prod_name}}</a> <br>
             {{product.prod_desc}} 
             <div class="qty">
                 {{product.stock_qty}}</a> units
@@ -16,10 +16,14 @@
                     sell : {{ product.sell_price }}
                 </span>
             </div>
+            <p><a href="/product/{{product.id}}/edit">Edit</a></p>
             <div class="buttons">
                 <form class="delete-form" action="/products/{{product.id}}/delete" method="POST">
                     <button class="trash-button"><i class="fa fa-trash-o fa-3x" style="color:rgb(58, 12, 12)" aria-hidden="true"></i></button>
                 </form>
+                <br>
+                Manufactured by : {{product.manufacturer.manufacturer_name}} in {{product.manufacturer.country}}
+                <br>
                 Imported : 
                 {% if product.imported == True %}
                     <i class="fa fa-check fa-2x" style="color:dodgerblue" aria-hidden="true"></i>
