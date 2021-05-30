@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, redirect, Blueprint
 from repositories import manufacturer_repository, product_repository
 
 from models.product import Product
+from models.manufacturer import Manufacturer
 
 products_blueprint = Blueprint("products", __name__)
 
@@ -23,9 +24,17 @@ def update_product(id):
     qty = request.form['qty']
     buy = request.form['buy']
     sell = request.form['sell']
-    manufacturer = manufacturer_repository.select(id)
-    product = Product(name,manufacturer,description,qty,buy,sell)
+    product = product_repository.select(id)
+    product.prod_name = name
+    product.prod_desc = description
+    product.stock_qty = qty
+    product.buy_cost = buy
+    product.sell_price = sell
+    # manufacturer = manufacturer_repository.select(id)
+    # product = Product(name,product.manufacturer,description,qty,buy,sell,id=id)
+    # print("The name is " + product.prod_name)
     product_repository.update(product)
+    # product_repository.save(product)
     return redirect('/products')
 
 @products_blueprint.route("/products/<id>/delete", methods=["POST"])
@@ -45,13 +54,18 @@ def create_product():
     qty = request.form['qty']
     buy = request.form['buy']
     sell = request.form['sell']
-    manufacturer = request.form['manufacturer']
+    # manufacturer = request.form['manufacturer']
+    manufacturer_name = request.form['manufacturer']
+    manufacturer = Manufacturer(manufacturer_name,"Uk")
+    manufacturer = manufacturer_repository.save(manufacturer)
+    # print("The id is " + manufacturer.id)
     product = Product(name,manufacturer,description,qty,buy,sell)
     product_repository.save(product)
     return redirect('/products')
 
 @products_blueprint.route("/products/<id>", methods=['GET'])
 def show_product(id):
+    # print("The name is ")
     product = product_repository.select(id)
     return render_template('products/show.html', product=product)
 
