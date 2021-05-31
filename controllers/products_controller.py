@@ -1,10 +1,14 @@
+
 from flask import Flask, render_template, request, redirect, Blueprint
-from repositories import manufacturer_repository, product_repository
+from repositories import manufacturer_repository, product_repository, order_repository
 
 from models.product import Product
 from models.manufacturer import Manufacturer
+from models.order import Order
+import pdb;
 
 products_blueprint = Blueprint("products", __name__)
+
 
 @products_blueprint.route("/products")
 def product():
@@ -70,7 +74,31 @@ def show_product(id):
     return render_template('products/show.html', product=product)
 
 
+@products_blueprint.route("/new_order", methods=['GET'])
+def show_order_form():
+    products = product_repository.select_all()
+    return render_template ('products/new_order.html', products=products)
 
 @products_blueprint.route("/orders")
-def recent_orders():
-    return render_template("products/orders.html")
+def orders_list():
+    orders = order_repository.select_all()
+    return render_template('products/orders.html', all_orders=orders)
+
+
+# @products_blueprint.route("/orders", methods=['POST'])
+# def new_order():
+#     # print("evening" )
+#     first_name = request.form['first-name']
+#     last_name = request.form['last-name']
+#     # print("evening" )
+#     product_id = request.form['product_id'] #this is assigning the product_id to be used below
+#     # product_id = int(product_id_string)
+#     # pdb.set_trace()
+#     product = product_repository.select(product_id)
+#     qty = request.form['qty']
+#     order = Order(first_name,last_name,product,qty)
+#     add_new_order(order)
+#     return redirect('/orders')
+
+
+

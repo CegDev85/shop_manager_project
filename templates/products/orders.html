@@ -2,9 +2,20 @@
 
 {% block content %}
 
+<h2>Recent Orders</h2>
+<br>
+<div>
+    <nav>
+        <ul>
+            <li><a href="/new_order">Test Order</a></li>
+        </ul>
+    </nav>
+</div>
+
+{% for order in all_orders %}
+    {{order.first_name}} {{order.last_name}} : {{order.product.prod_name}} : {{order.qty}}
 
 
-<h1>evening</h1>
-
+{% endfor %}
 
 {% endblock %}

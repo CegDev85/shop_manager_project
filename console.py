@@ -1,13 +1,17 @@
+
 import pdb 
 from models.product import Product
 from models.manufacturer import Manufacturer
-from models.customer import Customer
+from models.order import Order
+
 
 import repositories.product_repository as product_repository 
 import repositories.manufacturer_repository as manufacturer_repository
+import repositories.order_repository as order_repository
 
 manufacturer_repository.delete_all()
 product_repository.delete_all()
+order_repository.delete_all()
 
 manufacturer1 = Manufacturer("FunkBrands","UK")
 manufacturer_repository.save(manufacturer1)
@@ -29,10 +33,10 @@ product_repository.save(product3)
 
 product_repository.select_all()
 
-# product_repository.delete(3)
+order1 = Order("Gavin", "Smith",product1,2)
+order_repository.save(order1)
 
-
-
+order_repository.select_all()
 
 
 pdb.set_trace()

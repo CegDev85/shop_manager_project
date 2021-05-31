@@ -1,6 +1,7 @@
 from db.run_sql import run_sql
 
 from models.product import Product
+import pdb
 
 
 import repositories.manufacturer_repository as manufacturer_repository 
@@ -9,7 +10,7 @@ import repositories.manufacturer_repository as manufacturer_repository
 
 
 def save(product):
-    print("The manufacturer is " + product.manufacturer.manufacturer_name)
+    # print("The manufacturer is " + product.manufacturer.manufacturer_name)
     sql = "INSERT INTO products (prod_name,manufacturer_id,prod_desc,stock_qty,buy_cost,sell_price,imported) VALUES (%s,%s,%s,%s,%s,%s,%s) RETURNING *"
     values = [product.prod_name, product.manufacturer.id, product.prod_desc, product.stock_qty, product.buy_cost, product.sell_price, product.imported]
     results = run_sql(sql, values)
@@ -19,6 +20,7 @@ def save(product):
 
 def select(id):
     product = None
+    # pdb.set_trace()
     sql = "SELECT * FROM products WHERE id = %s"
     values = [id]
     result = run_sql(sql, values)[0]
@@ -50,8 +52,6 @@ def delete_all():
     run_sql(sql)
 
 def update(product):
-    # print("The name is " + product.prod_name)
-    # print("The id is " + product.id)
     sql = "UPDATE products SET (prod_name, manufacturer_id, prod_desc, stock_qty, buy_cost, sell_price, imported) = (%s, %s, %s, %s, %s, %s, %s) WHERE id = %s"
     values = [product.prod_name, product.manufacturer.id, product.prod_desc, product.stock_qty, product.buy_cost, product.sell_price, product.imported, product.id]
     run_sql(sql, values)
