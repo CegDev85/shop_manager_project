@@ -3,13 +3,13 @@
 {%block content%}
 
 <div>
-    <p>{{product.prod_name}}</p>
+    <p>Name: {{product.prod_name}}</p>
     <hr>
-    <p>{{product.prod_desc}}</p>
-    <p>{{product.stock_qty}}</p>
+    <p>Description: {{product.prod_desc}}</p>
+    <p>Qty in stock: {{product.stock_qty}} {{qty}}</p>
     <p> Stock warning: {{stock}}</p>
-    <p>{{product.buy_cost}}</p>
-    <p>{{product.sell_price}}</p>
+    <p>Buy cost: {{product.buy_cost}}</p>
+    <p>Sell price: {{product.sell_price}}</p>
     <p><a href="/product/{{product.id}}/edit">Edit</a></p>
 </div>
 

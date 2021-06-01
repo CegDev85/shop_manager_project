@@ -1,4 +1,4 @@
-import repositories.product_repository as product_repository
+# import repositories.product_repository as product_repository
 import pdb;
 
 class Product:
@@ -16,10 +16,10 @@ class Product:
     def mark_imported(self):
         self.imported = True
 
-    @classmethod
-    def stock_alert(cls,id):
-        product = product_repository.select(id)
-        if product.stock_qty <= 2:
-            return "Low Stock"
-        elif product.stock_qty == 0:
-            return "Out of Stock"
+    # @classmethod
+    # def stock_alert(cls,id):
+    #     product = product_repository.select(id)
+    #     if product.stock_qty <= 2:
+    #         return "Low Stock"
+    #     elif product.stock_qty == 0:
+    #         return "Out of Stock"

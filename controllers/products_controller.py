@@ -67,10 +67,21 @@ def create_product():
     product_repository.save(product)
     return redirect('/products')
 
+# @products_blueprint.route("/products/<id>", methods=['GET'])
+# def show_product(id):
+#     product = product_repository.select(id)
+#     stock = Product.stock_alert(id)
+#     return render_template('products/show.html', product=product, stock=stock)
+
 @products_blueprint.route("/products/<id>", methods=['GET'])
 def show_product(id):
     product = product_repository.select(id)
-    stock = Product.stock_alert(id)
+    stock = ""
+    products = product_repository.select(id)
+    if products.stock_qty <= 2:
+        stock = "Low Stock"
+    elif products.stock_qty == 0:
+        stock =  "Out of Stock"
     return render_template('products/show.html', product=product, stock=stock)
 
 
@@ -108,8 +119,6 @@ def new_order():
     product = product_repository.select(product_id)
     qty = request.form['qty']
     order = Order(first_name,last_name,product,qty)
-    # sell = order.sell_stock(order)
-    # alert = Product.stock_alert(product) 
     order_repository.save(order)
     return redirect('/orders')
 
