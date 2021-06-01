@@ -6,8 +6,9 @@ body {
 
 .home-button {
     text-align: center;
-    text-size-adjust:100px ;
 }
+
+
 
 .nav-buttons {
     display: flex;

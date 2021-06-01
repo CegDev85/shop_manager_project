@@ -70,14 +70,14 @@ def create_product():
 @products_blueprint.route("/products/<id>", methods=['GET'])
 def show_product(id):
     product = product_repository.select(id)
-    return render_template('products/show.html', product=product)
+    stock = Product.stock_alert(id)
+    return render_template('products/show.html', product=product, stock=stock)
 
 
 @products_blueprint.route("/new_order", methods=['GET'])
 def show_order_form():
     products = product_repository.select_all()
-    alert = Product.stock_alert(products) 
-    return render_template ('products/new_order.html', products=products, alert=alert) #this is how to pass it in html
+    return render_template ('products/new_order.html', products=products) #this is how to pass it in html
 
 @products_blueprint.route("/orders")
 def orders_list():
