@@ -6,3 +6,8 @@ class Order:
         self.product = product
         self.qty = qty
         self.id = id
+
+
+    def sell_stock(product,qty):
+        product.stock_qty -= qty
+        return product.stock_qty

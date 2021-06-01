@@ -69,7 +69,6 @@ def create_product():
 
 @products_blueprint.route("/products/<id>", methods=['GET'])
 def show_product(id):
-    # print("The name is ")
     product = product_repository.select(id)
     return render_template('products/show.html', product=product)
 
@@ -77,7 +76,8 @@ def show_product(id):
 @products_blueprint.route("/new_order", methods=['GET'])
 def show_order_form():
     products = product_repository.select_all()
-    return render_template ('products/new_order.html', products=products)
+    alert = Product.stock_alert(products) 
+    return render_template ('products/new_order.html', products=products, alert=alert) #this is how to pass it in html
 
 @products_blueprint.route("/orders")
 def orders_list():
@@ -85,18 +85,31 @@ def orders_list():
     return render_template('products/orders.html', all_orders=orders)
 
 
+# @products_blueprint.route("/orders", methods=['POST'])
+# def new_order():
+#     # print("evening" )
+#     first_name = request.form['first-name']
+#     last_name = request.form['last-name']
+#     # print("evening" )
+#     product_id = request.form['product_id'] #this is assigning the product_id to be used below
+#     # product_id = int(product_id_string)
+#     # pdb.set_trace()
+#     product = product_repository.select(product_id)
+#     qty = request.form['qty']
+#     order = Order(first_name,last_name,product,qty)
+#     order_repository.save(order)
+#     return redirect('/orders')
+
 @products_blueprint.route("/orders", methods=['POST'])
 def new_order():
-    # print("evening" )
     first_name = request.form['first-name']
     last_name = request.form['last-name']
-    # print("evening" )
     product_id = request.form['product_id'] #this is assigning the product_id to be used below
-    # product_id = int(product_id_string)
-    # pdb.set_trace()
     product = product_repository.select(product_id)
     qty = request.form['qty']
     order = Order(first_name,last_name,product,qty)
+    # sell = order.sell_stock(order)
+    # alert = Product.stock_alert(product) 
     order_repository.save(order)
     return redirect('/orders')
 

@@ -1,9 +1,17 @@
 body {
-    background-image:url("Screenshot\ 2021-05-28\ at\ 22.29.35.png")
+    background-image:url("hand-painted-watercolor-background-with-sky-clouds-shape.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .home-button {
     text-align: center;
+    text-size-adjust:100px ;
+}
+
+.nav-buttons {
+    display: flex;
+    justify-content: space-around;
 }
 
 

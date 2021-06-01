@@ -1,3 +1,6 @@
+
+import pdb;
+
 class Product:
 
     def __init__(self,prod_name,manufacturer,prod_desc,stock_qty,buy_cost,sell_price,imported = False, id = None ):
@@ -12,3 +15,11 @@ class Product:
 
     def mark_imported(self):
         self.imported = True
+
+    @classmethod
+    def stock_alert(cls,products):
+        for product in products:
+            if product.stock_qty <= 2:
+                return "Low Stock"
+            elif product.stock_qty == 0:
+                return "Out of Stock"

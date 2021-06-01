@@ -33,8 +33,7 @@ product_repository.save(product3)
 
 product_repository.select_all()
 
-order1 = Order("Gavin", "Smith",product1,2)
-order_repository.save(order1)
+
 
 order_repository.select_all()
 
