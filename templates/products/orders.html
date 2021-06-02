@@ -4,20 +4,21 @@
 
 <h2>Recent Orders</h2>
 <br>
-<div>
+<div class="new-order">
     <nav>
         <ul>
             <li><a href="/new_order">Test Order</a></li>
         </ul>
     </nav>
 </div>
+<hr>
+<div class="order-info">
+    {% for order in all_orders %}
+        {{order.first_name}} {{order.last_name}} : {{order.product.prod_name}} : {{order.qty}}
+        <br>
+        <br>
 
-{% for order in all_orders %}
-    {{order.first_name}} {{order.last_name}} : {{order.product.prod_name}} : {{order.qty}}
-    <br>
-    <br>
 
-
-{% endfor %}
-
+    {% endfor %}
+</div>
 {% endblock %}

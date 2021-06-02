@@ -1,19 +1,84 @@
 body {
+   
     background-image:url("hand-painted-watercolor-background-with-sky-clouds-shape.jpg");
     background-repeat: no-repeat;
     background-size: cover;
 }
 
+
 .home-button {
     text-align: center;
+    background-color: none;
+    color: rgb(189, 216, 224);
+    padding: 0em 0em;
+    text-decoration:none;
+    text-transform: uppercase;
+    font-size: 30px;
 }
-
 
 
 .nav-buttons {
     display: flex;
     justify-content: space-around;
+    border:5px none;
+    padding: 4px 8px;
+    color: #FFFFFF;
+    cursor:pointer; 
+    background-color: none;
+    color: rgb(206, 236, 245);
+    padding: 1em 5em;
+    text-decoration:none;
+    text-transform: uppercase;
+    font-size: 30px;
 }
 
+h1 {
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+    margin;
+    padding: 0px;
+    font-size: 5em;
+    color: #464646;
+    margin-bottom: 20px;
+    text-align: center;
+}
 
+h2 {
+    text-align: center;
+    font-family:monospace;
+    font-size:50px;
+    color: rgb(62, 0, 112);
+}
 
+.product {
+    font-style: oblique; 
+    font-size: 20px;
+    font-weight: bolder;
+}
+
+.show {
+    font-style: oblique; 
+    font-size: 20px;
+    font-weight: bolder;
+}
+
+.add-new {
+    font-size: 25px;
+    background-color: none;
+    color: rgb(189, 216, 224);
+}
+
+a {
+    text-decoration: none;
+}
+
+.new-order {
+    font-size: 25px;
+    background-color: none;
+    color: rgb(199, 181, 143);
+}
+
+.order-info {
+    font-style: oblique; 
+    font-size: 20px;
+    font-weight: bolder;
+}
